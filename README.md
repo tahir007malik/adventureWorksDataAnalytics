@@ -15,3 +15,15 @@ This project demonstrates data engineering concepts using the AdventureWorks dat
 - [Technologies Used](#technologies-used)
 
 ## Project Structure
+
+### Explanation of the Structure:
+- **Data/**: 
+  - contains original, unprocessed datasets.
+- **SQL/**:
+  - Holds SQL scripts for setting up the database schema, views and running queries.
+- **Docs/**:
+  - Includes architecture diagrams and additional project-related documentation.
+- **Notebooks/**:
+  - Interactive Jupyter notebooks for exploration and demonstration purposes.
+- **README.md**:
+  - Your project’s main documentation file.
