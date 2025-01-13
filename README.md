@@ -64,6 +64,9 @@ Before you can run the project, make sure you have the following:
   - **Azure Synapse Analytics**: To create a serverless database and data warehouse.
   - **Power BI Desktop**: For building reports and dashboards.
 
+- **Original Dataset**:
+    - Link: [Dataset](https://www.kaggle.com/datasets/ukveteran/adventure-works/data)
+
 ## Data Pipeline Workflow
 
 This project follows a streamlined data pipeline workflow to ingest, transform, and store the AdventureWorks dataset, using Azure services to ensure scalability and automation.
