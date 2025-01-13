@@ -1,0 +1,52 @@
+[
+    {
+        "p_rel_url": "tahir007malik/adventureWorksDataAnalytics/refs/heads/main/Data/AdventureWorks_Calendar.csv",
+        "p_sink_folder": "adventure_works_calender",
+        "p_sink_file": "adventure_works_calender.csv"
+    },
+    {
+        "p_rel_url": "tahir007malik/adventureWorksDataAnalytics/refs/heads/main/Data/AdventureWorks_Customers.csv",
+        "p_sink_folder": "adventure_works_customers",
+        "p_sink_file": "adventure_works_customers.csv"
+    },
+    {
+        "p_rel_url": "tahir007malik/adventureWorksDataAnalytics/refs/heads/main/Data/AdventureWorks_Product_Categories.csv",
+        "p_sink_folder": "adventure_works_product_categories",
+        "p_sink_file": "adventure_works_product_categories.csv"
+    },
+    {
+        "p_rel_url": "tahir007malik/adventureWorksDataAnalytics/refs/heads/main/Data/AdventureWorks_Product_Subcategories.csv",
+        "p_sink_folder": "adventure_works_product_subcategories",
+        "p_sink_file": "adventure_works_product_subcategories.csv"
+    },
+    {
+        "p_rel_url": "tahir007malik/adventureWorksDataAnalytics/refs/heads/main/Data/AdventureWorks_Products.csv",
+        "p_sink_folder": "adventure_works_products",
+        "p_sink_file": "adventure_works_products.csv"
+    },
+    {
+        "p_rel_url": "tahir007malik/adventureWorksDataAnalytics/refs/heads/main/Data/AdventureWorks_Returns.csv",
+        "p_sink_folder": "adventure_works_returns",
+        "p_sink_file": "adventure_works_returns.csv"
+    },
+    {
+        "p_rel_url": "tahir007malik/adventureWorksDataAnalytics/refs/heads/main/Data/AdventureWorks_Sales_2015.csv",
+        "p_sink_folder": "adventure_works_sales_2015",
+        "p_sink_file": "adventure_works_sales_2015.csv"
+    },
+    {
+        "p_rel_url": "tahir007malik/adventureWorksDataAnalytics/refs/heads/main/Data/AdventureWorks_Sales_2016.csv",
+        "p_sink_folder": "adventure_works_sales_2016",
+        "p_sink_file": "adventure_works_sales_2016.csv"
+    },
+    {
+        "p_rel_url": "tahir007malik/adventureWorksDataAnalytics/refs/heads/main/Data/AdventureWorks_Sales_2017.csv",
+        "p_sink_folder": "adventure_works_sales_2017",
+        "p_sink_file": "adventure_works_sales_2017.csv"
+    },
+    {
+        "p_rel_url": "tahir007malik/adventureWorksDataAnalytics/refs/heads/main/Data/AdventureWorks_Territories.csv",
+        "p_sink_folder": "adventure_works_territories",
+        "p_sink_file": "adventure_works_territories.csv"
+    }
+]
