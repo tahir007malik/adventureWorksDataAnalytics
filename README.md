@@ -114,7 +114,6 @@ This project follows a streamlined data pipeline workflow to ingest, transform, 
 - The workflow is automated through Azure services:  
   - **Azure Data Factory** pipelines use **Scheduled Triggers** to run at regular intervals.  
   - **Azure Function App** enables event-driven automation by processing triggers when specific events occur (e.g., file upload or pipeline completion).  
-  - **Event Grid** and **Logic Apps** can further enhance automation by orchestrating workflows across services.  
 - These integrations ensure minimal manual intervention while maintaining scalability and reliability.
 
 ## Technologies Used
