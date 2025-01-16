@@ -7,6 +7,6 @@ SELECT
 FROM
     OPENROWSET
     (
-        BULK 'https://tahirbucket01.dfs.core.windows.net/silver/adventure_works_calendar/',
+        BULK 'https://`your-storage-account`.dfs.core.windows.net/silver/adventure_works_calendar/',
         FORMAT = 'PARQUET'
     ) AS query1
