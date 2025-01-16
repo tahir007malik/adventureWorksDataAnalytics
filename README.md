@@ -79,7 +79,7 @@ This project follows a streamlined data pipeline workflow to ingest, transform, 
 ## Workflow Steps  
 
 ### 1. Real-Time Data Update (Azure Function App)  
-- When any new file is added to the `Data/` directory in the GitHub repository, a **GitHub webhook** is triggered.  
+- When any new file (Make sure to name your file like this `AdventureWorks_<file-name>`) is added to the `Data/` directory in the GitHub repository, a **GitHub webhook** is triggered.  
 - The webhook sends a payload to the Azure Function App URL (ensure the Function App is running; otherwise, an error will occur).  
 - The **Azure Function App**:  
   1. Validates the payload to ensure the new file is in the `Data/` directory and has a `.csv` extension.  
@@ -123,7 +123,7 @@ This project leverages a variety of Azure services and tools to automate and man
 
 - **Azure Function App**:
   - A serverless compute service that allows you to run event-driven code. It’s used to build and deploy lightweight, scalable, and cost-efficient functions to automate tasks such as data processing, integration between systems, or triggering workflows in real-time.
-  
+
 - **Azure Data Factory**:
   - Used for orchestrating data movement and managing the ETL pipeline. Data is ingested from the GitHub repository and stored in ADLS Gen 2.
   
