@@ -23,6 +23,8 @@ This project demonstrates data engineering concepts using the AdventureWorks dat
   - Includes architecture diagrams and additional project-related documentation.
 - **Notebooks/**:
   - Interactive Jupyter notebooks for exploration and demonstration purposes.
+- **Azure Functions/**:
+  - Includes the Azure Function implementation scripts. This directory typically contains subfolders, including function_app.py, and associated helper modules.
 - **README.md**:
   - Your project’s main documentation file.
 
@@ -50,7 +52,7 @@ This project demonstrates data engineering concepts using the AdventureWorks dat
 Before you can run the project, make sure you have the following:
 
 - **Azure Subscription**:
-  - You need access to an Azure account with permissions to use **Azure Data Factory**, **Azure Databricks**, **Azure Synapse Analytics**, and **ADLS Gen 2**.
+  - You need access to an Azure account with permissions to use **Azure Data Factory**, **Azure Databricks**, **Azure Synapse Analytics**, **Azure Function App** and **ADLS Gen 2**.
   
 - **GitHub Account**:
   - A GitHub account to access the repository for data ingestion.
@@ -63,49 +65,65 @@ Before you can run the project, make sure you have the following:
   - **Azure Databricks**: For data transformation using Spark.
   - **Azure Synapse Analytics**: To create a serverless database and data warehouse.
   - **Power BI Desktop**: For building reports and dashboards.
+  - **Azure Function App**: A serverless compute service that allows you to run event-driven code.
 
 - **Original Dataset**:
     - Link: [Dataset](https://www.kaggle.com/datasets/ukveteran/adventure-works/data)
 
-## Data Pipeline Workflow
+# Data Pipeline Workflow  
 
-This project follows a streamlined data pipeline workflow to ingest, transform, and store the AdventureWorks dataset, using Azure services to ensure scalability and automation.
+This project follows a streamlined data pipeline workflow to ingest, transform, and store the AdventureWorks dataset, leveraging Azure services for scalability, automation, and real-time event handling.  
 
-![Data Pipeline Workflow](https://github.com/tahir007malik/adventureWorksDataAnalytics/blob/main/Docs/adventureWorksArchitecture.png)
+![Data Pipeline Workflow](https://github.com/tahir007malik/adventureWorksDataAnalytics/blob/main/Docs/adventureWorksArchitecture.png)  
 
-### 1. **Data Ingestion (Bronze Directory)**
-   - Data is ingested from a GitHub repository using **Azure Data Factory**.
-   - A linked service is created in Data Factory to pull the data from the GitHub repository and store it in **ADLS Gen 2** in the **Bronze** directory as raw files (e.g., CSV, JSON).
-   - Data Factory pipelines are responsible for orchestrating this process.
+## Workflow Steps  
 
-### 2. **Data Transformation (Silver Directory)**
-   - The raw data stored in the **Bronze** directory is then processed using **Azure Databricks**.
-   - Spark-based notebooks are used to clean, transform, and prepare the data for analysis.
-   - The transformed data is stored in the **Silver** directory of **ADLS Gen 2**, which holds the more structured version of the dataset.
+### 1. Real-Time Data Update (Azure Function App)  
+- When any new file is added to the `Data/` directory in the GitHub repository, a **GitHub webhook** is triggered.  
+- The webhook sends a payload to the Azure Function App URL (ensure the Function App is running; otherwise, an error will occur).  
+- The **Azure Function App**:  
+  1. Validates the payload to ensure the new file is in the `Data/` directory and has a `.csv` extension.  
+  2. Fetches the `.JSON` file (storing parameters for the dataset) from **ADLS Gen 2**.  
+  3. Updates the `.JSON` file with metadata from the new file and pushes the updated `.JSON` back to **ADLS Gen 2**.  
+- Once the pipeline in **Azure Data Factory (ADF)** is triggered, it follows the subsequent process described below.  
 
-### 3. **Data Storage & Structuring (Gold Schema)**
-   - The processed and transformed data is then loaded into **Azure Synapse Analytics** to create a **serverless database**.
-   - A **Gold schema** is created within Synapse, consisting of tables like `gold.calendar`, `gold.categories`, `gold.customers`, and `gold.sales` etc.
-   - These tables are organized for easy access by data analysts, optimized for querying.
+### 2. Data Ingestion (Bronze Directory)  
+- Data is ingested from the GitHub repository using **Azure Data Factory**.  
+- A linked service is created in Data Factory to pull the data from the GitHub repository and store it in **ADLS Gen 2** in the **Bronze** directory as raw files (e.g., CSV, JSON).  
+- Data Factory pipelines orchestrate this process.  
 
-### 4. **External Data Sources & Tables**
-   - **External data sources** are configured in Azure Synapse for both the **Silver** and **Gold** datasets.
-   - External tables like `gold.extsales` are created to allow analysts to query the transformed and structured data efficiently.
+### 3. Data Transformation (Silver Directory)  
+- The raw data stored in the **Bronze** directory is processed using **Azure Databricks**.  
+- Spark-based notebooks are used to clean, transform, and prepare the data for analysis.  
+- The transformed data is stored in the **Silver** directory of **ADLS Gen 2**, containing the structured version of the dataset.  
 
-### 5. **Power BI Integration**
-   - The **Gold schema** in the Synapse database is then connected to **Power BI**.
-   - Power BI visualizations and dashboards are created using the Gold schema for reporting and data analysis, enabling analysts to work with ready-to-use, clean data.
+### 4. Data Storage & Structuring (Gold Schema)  
+- The processed and transformed data is loaded into **Azure Synapse Analytics** to create a **serverless database**.  
+- A **Gold schema** is created within Synapse, consisting of tables like `gold.calendar`, `gold.categories`, `gold.customers`, and `gold.sales` etc.  
+- These tables are optimized for querying and used for analytics.  
 
-### 6. **Automated Data Flow**
-   - The workflow is partially automated through Azure services. 
-   - **Azure Data Factory** pipelines are set to run at regular intervals using **Scheduled Triggers**, ensuring that the data pipeline is automatically triggered without manual intervention.
-   - Additionally, **event-based triggers** can be configured to automatically start the pipeline when new data is available or other conditions are met.
-   - For maximum automation, services like **Azure Logic Apps** or **GitHub Actions** can be integrated to initiate the pipeline in response to specific events.
+### 5. External Data Sources & Tables  
+- **External data sources** are configured in Azure Synapse for both **Silver** and **Gold** datasets.  
+- External tables like `gold.extsales` are created for efficient querying by analysts.  
+
+### 6. Power BI Integration  
+- The **Gold schema** in Synapse is connected to **Power BI**.  
+- Dashboards and visualizations are created using the Gold schema for reporting, enabling analysts to interact with clean, ready-to-use data.  
+
+### 7. Automated Data Flow  
+- The workflow is automated through Azure services:  
+  - **Azure Data Factory** pipelines use **Scheduled Triggers** to run at regular intervals.  
+  - **Azure Function App** enables event-driven automation by processing triggers when specific events occur (e.g., file upload or pipeline completion).  
+  - **Event Grid** and **Logic Apps** can further enhance automation by orchestrating workflows across services.  
+- These integrations ensure minimal manual intervention while maintaining scalability and reliability.
 
 ## Technologies Used
 
 This project leverages a variety of Azure services and tools to automate and manage the data pipeline, along with other technologies to ensure smooth data transformation, storage, and reporting.
 
+- **Azure Function App**:
+  - A serverless compute service that allows you to run event-driven code. It’s used to build and deploy lightweight, scalable, and cost-efficient functions to automate tasks such as data processing, integration between systems, or triggering workflows in real-time.
+  
 - **Azure Data Factory**:
   - Used for orchestrating data movement and managing the ETL pipeline. Data is ingested from the GitHub repository and stored in ADLS Gen 2.
   
@@ -130,7 +148,5 @@ This project leverages a variety of Azure services and tools to automate and man
 - **SQL**:
   - SQL scripts are used in **Azure Synapse Analytics** to create tables, views, and queries for managing the transformed data and creating insights for analysts.
 
-- **Azure Logic Apps** (Optional):
-  - Can be integrated for event-based triggers to automate the data pipeline based on external changes, such as new data being pushed to GitHub.
 
 These technologies come together to form a robust, scalable, and automated data pipeline, enabling efficient data engineering workflows.
