@@ -4,6 +4,9 @@
 
 This project demonstrates data engineering concepts using the AdventureWorks dataset. It involves data ingestion, transformation, and storage using modern data engineering tools and workflows. The project is designed to showcase efficient data pipelines and best practices for handling large-scale datasets.
 
+## Video Documentation
+Link: [YouTube](https://youtu.be/psPyDF24UTM)
+
 ## Table of Contents
 
 - [Project Structure](#project-structure)
