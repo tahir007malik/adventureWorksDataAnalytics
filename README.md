@@ -1,4 +1,4 @@
-# adventureWorksDataAnalytics
+# Adventure Works Data Analytics
 
 ## Overview
 
