@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project demonstrates data engineering concepts using the AdventureWorks dataset. It involves data ingestion, transformation, and storage using modern data engineering tools and workflows. The project is designed to showcase efficient data pipelines and best practices for handling large-scale datasets.
+This repository showcases an end-to-end ETL pipeline leveraging Azure services, including ADF, ADLS Gen2, Databricks, and Synapse Analytics, to enhance data processing efficiency. It features a medallion architecture for structured data management and an Azure Function App integration for dynamic updates triggered by new file additions. This project demonstrates scalable, reliable, and efficient data engineering practices.
 
 ## Video Documentation
 Link: [YouTube](https://youtu.be/psPyDF24UTM)
