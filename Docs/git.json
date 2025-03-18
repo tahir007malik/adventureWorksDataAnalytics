@@ -1,7 +1,7 @@
 [
     {
         "p_rel_url": "tahir007malik/adventureWorksDataAnalytics/refs/heads/main/Data/AdventureWorks_Calendar.csv",
-        "p_sink_folder": "adventure_works_calender",
+        "p_sink_folder": "adventure_works_calendar",
         "p_sink_file": "adventure_works_calender.csv"
     },
     {
